@@ -1,58 +1,26 @@
-import logo from './logo.svg';
-import React from 'react';
-import { Greeting } from './Greeting'
-import { PeopleList } from './PeopleList'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HomePage, CounterButtonPage, PeopleListPage } from './pages';
 import './App.css';
 
-const people = [
-  {
-    name: 'John',
-    age:30,
-    hairColor:'brown',
-
-  },{
-    name: 'Helga',
-    age:45,
-    hairColor:'black',
-
-  },{
-    name: 'Dwayne',
-    age:34,
-    hairColor:'blonde',
-
-  },
-];
-
 function App() {
-  let url = "https://reactjs.org";
-
-  const displayAlert = () => {
-    alert('Hello');
-  };
 
   return (
     <div className="App">
       <header className="App-header">
-
-        <p style={{color: 'red', fontSize: 70}}>Big Red Text!</p>
-
-        <Greeting person={{name:"Prataap MS", numberOfMessages:5}} name="Prataap" numberOfMessages={100} />
-        <PeopleList people={people}/>
-        
-        <button onClick={displayAlert}>Click Me!</button>
-
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is so cool!
-        </p>
-        <a
-          className="App-link"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Router>
+          <Link to="/" className="App-link">Go Home</Link>
+          <Link to="/counter" className="App-link">Go to counter page</Link>
+          <Link to="/people-list" className="App-link">Go to people list page</Link>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/counter/:name?">
+            <CounterButtonPage />
+          </Route>
+          <Route path="/people-list">
+            <PeopleListPage />
+          </Route>
+        </Router>
       </header>
     </div>
   );
