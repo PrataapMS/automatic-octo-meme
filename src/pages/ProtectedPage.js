@@ -1,19 +1,14 @@
-import { React, useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { AuthenticatedMessage } from '../AuthenticatedMessage';
+import { NotAuthenticatedRedirect } from '../NotAuthenticatedRedirect';
 
-export const ProtectedPage = () => {
-    const [authed, toggleAuthed] = useState(false);
-
+export const ProtectedPage = ({ authed }) => {
     return (
         <>
-            <button onClick={() => toggleAuthed(authed ? false : true)}>Toggle Login</button>
             {authed ?
                 (
                     <AuthenticatedMessage isAuthed={authed} />
-                ) : <Redirect to="/" />
+                ) : <NotAuthenticatedRedirect isAuthed={authed} />
             }
         </>
     )
-
 }
