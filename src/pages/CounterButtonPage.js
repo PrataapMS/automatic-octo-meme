@@ -13,7 +13,7 @@ export const CounterButtonPage = () => {
     console.log(parse(location.search));
 
     // const [numberOfClicks, setNumberOfClicks] = useState(0);
-    const [numberOfClicks, setNumberOfClicks] = useState(Number(startingValue));
+    const [numberOfClicks, setNumberOfClicks] = useState(startingValue ? Number(startingValue) : 0);
 
     const [hideMessage, setHideMessage] = useState(false);
 
