@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../ThemeContext';
+import {useUserData} from '../useUserData';
 
+// commented below code which was used for container pattern for loading user data
+// export const UserProfilePage = ({ user }) => {
 export const UserProfilePage = () => {
-    const [user, setUser] = useState({ name: {} });
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const response = await fetch('https://randomuser.me/api/');
-            const data = await response.json();
-            setUser(data.results[0]);
-        }
-
-        fetchUser();
-    }, []);
-
-
-
+    const theme = useContext(ThemeContext);
+    const user = useUserData();
     return (
-        <div>
-            <p sytle={{color:'red'}}>Fetching random user</p>
+        <div style={{
+            backgroundColor: theme === 'dark' ? 'black' : 'white',
+            color: theme === 'dark' ? 'white' : 'black'
+        }}>
+            <p sytle={{ color: 'red' }}>Fetching random user</p>
             <h3>Name: {user.name.first} {user.name.last}</h3>
             <p>Email: {user.email} </p>
         </div>
